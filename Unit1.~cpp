@@ -1,6 +1,7 @@
 //---------------------------------------------------------------------------
 
 #include <vcl.h>
+#include <windows.h>
 #pragma hdrstop
 
 #include "Unit1.h"
@@ -49,8 +50,8 @@ __fastcall TKreciki::TKreciki(TComponent* Owner)
 //---------------------------------------------------------------------------
 void __fastcall TKreciki::Timer_paletka_lewoTimer(TObject *Sender)
 {
-        if (Paletka->Left<1) Paletka->Left = 320;
-        Paletka->Left -= 10;
+        if (Paletka->Top<1) Paletka->Top = 320;
+        Paletka->Top -= 10;
 }
 //---------------------------------------------------------------------------
 
@@ -58,12 +59,12 @@ void __fastcall TKreciki::FormKeyDown(TObject *Sender, WORD &Key,
       TShiftState Shift)
 {
         //paletka1
-        if(Key == VK_LEFT) Timer_paletka_lewo->Enabled=true;
-        if(Key == VK_RIGHT) Timer_paletka_prawo->Enabled=true;
+        if(Key == 'Q') Timer_paletka_lewo->Enabled=true;
+        if(Key == 'A') Timer_paletka_prawo->Enabled=true;
 
         //paletka2
-        if(Key == 'A') Timer_paletka2_lewo->Enabled=true;
-        if(Key == 'D') Timer_paletka2_prawo->Enabled=true;
+        if(Key == VK_UP) Timer_paletka2_lewo->Enabled=true;
+        if(Key == VK_DOWN) Timer_paletka2_prawo->Enabled=true;
 
 
 }
@@ -72,12 +73,12 @@ void __fastcall TKreciki::FormKeyUp(TObject *Sender, WORD &Key,
       TShiftState Shift)
 {
         //paletka1
-        if(Key == VK_LEFT) Timer_paletka_lewo->Enabled=false;
-        if(Key == VK_RIGHT) Timer_paletka_prawo->Enabled=false;
+        if(Key == 'Q') Timer_paletka_lewo->Enabled=false;
+        if(Key == 'A') Timer_paletka_prawo->Enabled=false;
 
         //paletka2
-        if(Key == 'A') Timer_paletka2_lewo->Enabled=false;
-        if(Key == 'D') Timer_paletka2_prawo->Enabled=false;
+        if(Key == VK_UP) Timer_paletka2_lewo->Enabled=false;
+        if(Key == VK_DOWN) Timer_paletka2_prawo->Enabled=false;
 
 }
 //---------------------------------------------------------------------------
@@ -91,24 +92,17 @@ void __fastcall TKreciki::Timer_pilkaTimer(TObject *Sender)
         if (Paletka2->Visible==false)
         {
                  //odbijanie od scian
-                if (Pilka->Left<5)
-                {
-                if(x<0) x = -x;
-                };
-                if (Pilka->Top<5) y = -y;
-                if (Pilka->Left>370)
-                {
-                if(x>0) x = -x;
-                };
-
-                if (Pilka->Top>520 && Kolory->Brush->Color==clGreen) y=-y;
+                if (Pilka->Top<5) if(y<0) y = -y;
+                if (Pilka->Top>400-Pilka->Height) if(y>0) y = -y;
+                if (Pilka->Left>550-Pilka->Width) if(x>0) x = -x;
+                if (Pilka->Left<2 && Kolory->Brush->Color==clGreen) if (x<0) x=-x;
 
                 //odbijanie od paletki 1
-                if(Pilka->Top>Paletka->Top-Pilka->Height && Pilka->Left>Paletka->Left-Pilka->Width/2 && Pilka->Left<Paletka->Left+Paletka->Width)
+                if(Pilka->Left<Paletka->Left+Paletka->Width+3 && Pilka->Left>Paletka->Left+Paletka->Width-3 && Pilka->Top>Paletka->Top-Pilka->Height/2 && Pilka->Top<Paletka->Top+Paletka->Height+Pilka->Height)
                 {
-                        if (y>0)
+                        if (x<0)
                         {
-                           y=-y;
+                           x=-x;
                            if (Kolory->Brush->Color==clGreen)
                            {
                              int temp = Punkty->Caption.ToInt()-5;
@@ -117,7 +111,7 @@ void __fastcall TKreciki::Timer_pilkaTimer(TObject *Sender)
                              if(Punkty->Caption>00) Punkty->Font->Color = clGreen;
                            };
                         };
-                } else if(Pilka->Top>Paletka->Top+(Pilka->Height/2))    //Skucha
+                } else if(Pilka->Left<0)    //Skucha
                 {
                         Pilka->Visible = false;
                         Timer_pilka->Enabled = false;
@@ -139,20 +133,13 @@ void __fastcall TKreciki::Timer_pilkaTimer(TObject *Sender)
         if (Paletka2->Visible==true)
         {
                 //odbijanie od scian
-                if (Pilka->Left<5)
-                {
-                if(x<0) x = -x;
-                };
-                if (Pilka->Left>370)
-                {
-                if(x>0) x = -x;
-                };
-                if (Pilka->Top>520 && Kolory->Brush->Color==clGreen) y=-y;
-                if (Pilka->Top<2 && Kolory->Brush->Color==clRed) y=-y;
-
+                if (Pilka->Top<5) if(y<0) y = -y;
+                if (Pilka->Top>400-Pilka->Height) if(y>0) y = -y;
+                if (Pilka->Left>550-Pilka->Width && Kolory->Brush->Color==clRed ) if(x>0) x = -x;
+                if (Pilka->Left<2 && Kolory->Brush->Color==clGreen) if (x<0) x=-x;
 
                 //Skucha
-                if((Pilka->Top>Paletka->Top+Pilka->Height/2) || (Pilka->Top<Paletka2->Top-Pilka->Height))
+                if((Pilka->Left<0) || (Pilka->Left>Paletka2->Left+Paletka2->Width+5))
                 {
                         Pilka->Visible = false;
                         Timer_pilka->Enabled = false;
@@ -170,11 +157,11 @@ void __fastcall TKreciki::Timer_pilkaTimer(TObject *Sender)
                         ShowMessage("Koniec Gry! \nTwoje Punkty:" + Punkty->Caption + "\n Czy dasz radê osi¹gn¹c lepszy wynik?");
                 };
                 //odbijanie od paletki 1
-                if(Pilka->Top>Paletka->Top-Pilka->Height && Pilka->Left>Paletka->Left-Pilka->Width/2 && Pilka->Left<Paletka->Left+Paletka->Width)
+                if(Pilka->Left<Paletka->Left+Paletka->Width+3 && Pilka->Left>Paletka->Left+Paletka->Width-3 && Pilka->Top>Paletka->Top-Pilka->Height/2 && Pilka->Top<Paletka->Top+Paletka->Height+Pilka->Height)
                 {
-                        if (y>0)
+                        if (x<0)
                         {
-                        y=-y;
+                        x=-x;
                         if (Kolory->Brush->Color==clGreen)
                            {
                              int temp = Punkty->Caption.ToInt()-5;
@@ -186,11 +173,11 @@ void __fastcall TKreciki::Timer_pilkaTimer(TObject *Sender)
                 }
 
                 //odbijanie od paletki 2
-                if(Pilka->Top<Paletka2->Top+Paletka2->Height && Pilka->Left>Paletka2->Left-Pilka->Width/2 && Pilka->Left+Pilka->Width/2<Paletka2->Left+Paletka2->Width)
+                if(Pilka->Left>Paletka2->Left-Pilka->Width-3 && Pilka->Left<Paletka2->Left-Pilka->Width+3 && Pilka->Top>Paletka2->Top-Pilka->Height/2 && Pilka->Top<Paletka2->Top+Paletka2->Height+Pilka->Height/2)
                 {
-                        if (y<0)
+                        if (x>0)
                         {
-                        y=-y;
+                        x=-x;
                         if (Kolory->Brush->Color==clRed)
                            {
                              int temp = Punkty->Caption.ToInt()-5;
@@ -295,13 +282,14 @@ void __fastcall TKreciki::FormCreate(TObject *Sender)
         Predkosc->Items->Add("5");
         Predkosc->Items->Add("6");
         Predkosc->Items->Add("7");
-        Application->MessageBox("Klawisze:\n\n Zielona Paletka:\nLEFT,RIGHT\nCzerwona Paletka:\nA,S\n\nZasady:\n +1pkt za zbicie kreta \n -5pkt za odbicie pi³ki gdy wskazany kolor jest taki sam jak kolor paletki",
+        Application->MessageBox("Klawisze:\n\n Zielona Paletka:\nUP,DOWN\nCzerwona Paletka:\nQ,A\n\nZasady:\n +1pkt za zbicie kreta \n -5pkt za odbicie pi³ki gdy wskazany kolor jest taki sam jak kolor paletki",
 				"Instrukcja", NULL);
 }
 //---------------------------------------------------------------------------
 
 void __fastcall TKreciki::StartClick(TObject *Sender)
 {
+        Sleep(500);
         srand(time(0));
         if ((Start->Caption=="Start") || (Start->Caption=="Nowa Gra"))
         {
@@ -320,8 +308,8 @@ void __fastcall TKreciki::StartClick(TObject *Sender)
                 Krecik10->Visible = false;
                 Krecik11->Visible = false;
                 Krecik12->Visible = false;
-                Pilka->Left = random(10, 350);
-                Pilka->Top = random(150, 400);
+                Pilka->Left = random(150, 400);
+                Pilka->Top = random(0, 400-Pilka->Height);
         };
 
         speed= StrToInt(Predkosc->Text);
@@ -355,8 +343,8 @@ void __fastcall TKreciki::PauzaClick(TObject *Sender)
 
 void __fastcall TKreciki::Timer_paletka_prawoTimer(TObject *Sender)
 {
-        if (Paletka->Left>320) Paletka->Left = 1;
-        Paletka->Left+=10;
+        if (Paletka->Top>320) Paletka->Top = 1;
+        Paletka->Top+=10;
 }
 //---------------------------------------------------------------------------
 
@@ -365,89 +353,89 @@ void __fastcall TKreciki::Timer_kretyTimer(TObject *Sender)
         //wielokrotnosci 1,4,7,10
         if (Krecik->Visible)
         {
-                Krecik->Left+=a;
-                if (Krecik->Left<=5) a=-a;
-                if (Krecik->Left>=375) a=-a;
+                Krecik->Top+=a;
+                if (Krecik->Top<=5) a=-a;
+                if (Krecik->Top>=375) a=-a;
         };
 
 
         if (Krecik4->Visible)
         {
-                Krecik4->Left+=a;
-                if (Krecik4->Left<=5) a=-a;
-                if (Krecik4->Left>=375) a=-a;
+                Krecik4->Top+=a;
+                if (Krecik4->Top<=5) a=-a;
+                if (Krecik4->Top>=375) a=-a;
         };
 
         if (Krecik7->Visible)
         {
-                Krecik7->Left+=a;
-                if (Krecik7->Left<=5) a=-a;
-                if (Krecik7->Left>=375) a=-a;
+                Krecik7->Top+=a;
+                if (Krecik7->Top<=5) a=-a;
+                if (Krecik7->Top>=375) a=-a;
         };
 
         if (Krecik10->Visible)
         {
-                Krecik10->Left+=a;
-                if (Krecik10->Left<=5) a=-a;
-                if (Krecik10->Left>=375) a=-a;
+                Krecik10->Top+=a;
+                if (Krecik10->Top<=5) a=-a;
+                if (Krecik10->Top>=375) a=-a;
         };
 
         //wielokrotnosci 2,5,8,11
         if (Krecik2->Visible)
         {
-                Krecik2->Left+=b;
-                if (Krecik2->Left<=5) b=-b;
-                if (Krecik2->Left>=375) b=-b;
+                Krecik2->Top+=b;
+                if (Krecik2->Top<=5) b=-b;
+                if (Krecik2->Top>=375) b=-b;
         };
 
         if (Krecik5->Visible)
         {
-                Krecik5->Left+=b;
-                if (Krecik5->Left<=5) b=-b;
-                if (Krecik5->Left>=375) b=-b;
+                Krecik5->Top+=b;
+                if (Krecik5->Top<=5) b=-b;
+                if (Krecik5->Top>=375) b=-b;
         };
 
         if (Krecik8->Visible)
         {
-                Krecik8->Left+=b;
-                if (Krecik8->Left<=5) b=-b;
-                if (Krecik8->Left>=375) b=-b;
+                Krecik8->Top+=b;
+                if (Krecik8->Top<=5) b=-b;
+                if (Krecik8->Top>=375) b=-b;
         };
 
         if (Krecik11->Visible)
         {
-                Krecik11->Left+=b;
-                if (Krecik11->Left<=5) b=-b;
-                if (Krecik11->Left>=375) b=-b;
+                Krecik11->Top+=b;
+                if (Krecik11->Top<=5) b=-b;
+                if (Krecik11->Top>=375) b=-b;
         };
 
         //wielokrotnosci 3,6,9,12
         if (Krecik3->Visible)
         {
-                Krecik3->Left+=c;
-                if (Krecik3->Left<=5) c=-c;
-                if (Krecik3->Left>=375) c=-c;
+                Krecik3->Top+=c;
+                if (Krecik3->Top<=5) c=-c;
+                if (Krecik3->Top>=375) c=-c;
         };
 
                 if (Krecik6->Visible)
         {
-                Krecik6->Left+=c;
-                if (Krecik6->Left<=5) c=-c;
-                if (Krecik6->Left>=375) c=-c;
+                Krecik6->Top+=c;
+                if (Krecik6->Top<=5) c=-c;
+                if (Krecik6->Top>=375) c=-c;
         };
 
                 if (Krecik9->Visible)
         {
-                Krecik9->Left+=c;
-                if (Krecik9->Left<=5) c=-c;
-                if (Krecik9->Left>=375) c=-c;
+                Krecik9->Top+=c;
+                if (Krecik9->Top<=5) c=-c;
+                if (Krecik9->Top>=375) c=-c;
         };
 
                 if (Krecik12->Visible)
         {
-                Krecik12->Left+=c;
-                if (Krecik12->Left<=5) c=-c;
-                if (Krecik12->Left>=375) c=-c;
+                Krecik12->Top+=c;
+                if (Krecik12->Top<=5) c=-c;
+                if (Krecik12->Top>=375) c=-c;
         };
 
 
@@ -457,15 +445,15 @@ void __fastcall TKreciki::Timer_kretyTimer(TObject *Sender)
 
 void __fastcall TKreciki::Timer_paletka2_lewoTimer(TObject *Sender)
 {
-        if (Paletka2->Left<1) Paletka2->Left = 320;
-        Paletka2->Left -= 10;        
+        if (Paletka2->Top<1) Paletka2->Top = 320;
+        Paletka2->Top -= 10;
 }
 //---------------------------------------------------------------------------
 
 void __fastcall TKreciki::Timer_paletka2_prawoTimer(TObject *Sender)
 {
-        if (Paletka2->Left>320) Paletka2->Left = 1;
-        Paletka2->Left+=10;        
+        if (Paletka2->Top>320) Paletka2->Top = 1;
+        Paletka2->Top+=10;
 }
 //---------------------------------------------------------------------------
 
@@ -473,8 +461,8 @@ void __fastcall TKreciki::TimerOgienTimer(TObject *Sender)
 {
         int losowa1, losowa2;
         bool kolizja = false;
-        losowa1 =  random(100,550-Ogien->Height-100);
-        losowa2 =  random(50,280);
+        losowa1 =  random(75,400-Ogien->Height-75);
+        losowa2 =  random(50,550-Ogien->Width-50);
         Ogien->Enabled  =true;
         Ogien->Visible = true;
 
@@ -497,14 +485,18 @@ void __fastcall TKreciki::TimerOgienTimer(TObject *Sender)
 void __fastcall TKreciki::TimerKoloryTimer(TObject *Sender)
 {
         int numerKoloru = random(1, 24);
-        if (numerKoloru>=1 && numerKoloru<=4) if((y>0 || Pilka->Top>50) && (y<0 || Pilka->Top<450)) Kolory->Brush->Color = clRed;
-        if (numerKoloru>=5 && numerKoloru<=8) if((y>0 || Pilka->Top>50) && (y<0 || Pilka->Top<450)) Kolory->Brush->Color = clGreen;
-        if (numerKoloru>=9 && numerKoloru<=12) if((y>0 || Pilka->Top>50) && (y<0 || Pilka->Top<450)) Kolory->Brush->Color = clGray;
-        if (numerKoloru>=13 && numerKoloru<=16) if((y>0 || Pilka->Top>50) && (y<0 || Pilka->Top<450)) Kolory->Brush->Color = clAqua;
-        if (numerKoloru>=17 && numerKoloru<=20) if((y>0 || Pilka->Top>50) && (y<0 || Pilka->Top<450)) Kolory->Brush->Color = clFuchsia;
-        if (numerKoloru>=21 && numerKoloru<=24) if((y>0 || Pilka->Top>50) && (y<0 || Pilka->Top<450)) Kolory->Brush->Color = clYellow;
+        
+        if (numerKoloru>=1 && numerKoloru<=4) if((x>0 || Pilka->Left>Paletka->Left+Paletka->Width+70) && (x<0 || Pilka->Left<Paletka2->Left-70)) Kolory->Brush->Color = clRed;
+        if (numerKoloru>=5 && numerKoloru<=8) if((x>0 || Pilka->Left>Paletka->Left+Paletka->Width+70) && (x<0 || Pilka->Left<Paletka2->Left-70)) Kolory->Brush->Color = clGreen;
+        if (numerKoloru>=9 && numerKoloru<=12) if((x>0 || Pilka->Left>Paletka->Left+Paletka->Width+70) && (x<0 || Pilka->Left<Paletka2->Left-70)) Kolory->Brush->Color = clGray;
+        if (numerKoloru>=13 && numerKoloru<=16) if((x>0 || Pilka->Left>Paletka->Left+Paletka->Width+70) && (x<0 || Pilka->Left<Paletka2->Left-70)) Kolory->Brush->Color = clAqua;
+        if (numerKoloru>=17 && numerKoloru<=20) if((x>0 || Pilka->Left>Paletka->Left+Paletka->Width+70) && (x<0 || Pilka->Left<Paletka2->Left-70)) Kolory->Brush->Color = clFuchsia;
+        if (numerKoloru>=21 && numerKoloru<=24) if((x>0 || Pilka->Left>Paletka->Left+Paletka->Width+70) && (x<0 || Pilka->Left<Paletka2->Left-70))
+        {
+                if (Paletka2->Visible) Kolory->Brush->Color = clYellow;
+                if (!Paletka2->Visible) Kolory->Brush->Color = clGreen;
+        };
 }
 //---------------------------------------------------------------------------
-
 
 

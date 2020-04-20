@@ -295,7 +295,7 @@ void __fastcall TKreciki::FormCreate(TObject *Sender)
         Predkosc->Items->Add("5");
         Predkosc->Items->Add("6");
         Predkosc->Items->Add("7");
-        Application->MessageBox("Klawisze:\n\n Zielona Paletka:\nLEFT,RIGHT\nCzerwona Paletka:\nA,D\n\nZasady:\n +1pkt za zbicie kreta \n -5pkt za odbicie pi³ki gdy wskazany kolor jest taki sam jak kolor paletki",
+        Application->MessageBox("Klawisze:\n\n Zielona Paletka:\nLEFT,RIGHT\nCzerwona Paletka:\nA,S\n\nZasady:\n +1pkt za zbicie kreta \n -5pkt za odbicie pi³ki gdy wskazany kolor jest taki sam jak kolor paletki",
 				"Instrukcja", NULL);
 }
 //---------------------------------------------------------------------------

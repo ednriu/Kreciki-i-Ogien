@@ -59,8 +59,8 @@ void __fastcall TKreciki::FormKeyDown(TObject *Sender, WORD &Key,
       TShiftState Shift)
 {
         //paletka1
-        if(Key == 'Q') Timer_paletka_lewo->Enabled=true;
-        if(Key == 'A') Timer_paletka_prawo->Enabled=true;
+        if(Key == 'E') Timer_paletka_lewo->Enabled=true;
+        if(Key == 'X') Timer_paletka_prawo->Enabled=true;
 
         //paletka2
         if(Key == VK_UP) Timer_paletka2_lewo->Enabled=true;
@@ -73,8 +73,8 @@ void __fastcall TKreciki::FormKeyUp(TObject *Sender, WORD &Key,
       TShiftState Shift)
 {
         //paletka1
-        if(Key == 'Q') Timer_paletka_lewo->Enabled=false;
-        if(Key == 'A') Timer_paletka_prawo->Enabled=false;
+        if(Key == 'E') Timer_paletka_lewo->Enabled=false;
+        if(Key == 'X') Timer_paletka_prawo->Enabled=false;
 
         //paletka2
         if(Key == VK_UP) Timer_paletka2_lewo->Enabled=false;
@@ -105,13 +105,14 @@ void __fastcall TKreciki::Timer_pilkaTimer(TObject *Sender)
                            x=-x;
                            if (Kolory->Brush->Color==clGreen)
                            {
+                             MediaPlayer1->Play();
                              int temp = Punkty->Caption.ToInt()-5;
                              Punkty->Caption = temp;
                              if(Punkty->Caption<0) Punkty->Font->Color = clRed;
                              if(Punkty->Caption>00) Punkty->Font->Color = clGreen;
                            };
                         };
-                } else if(Pilka->Left<0)    //Skucha
+                } else if(Pilka->Left<-5)    //Skucha
                 {
                         Pilka->Visible = false;
                         Timer_pilka->Enabled = false;
@@ -123,6 +124,7 @@ void __fastcall TKreciki::Timer_pilkaTimer(TObject *Sender)
                         Start->Caption = "Nowa Gra";
                         Start->Enabled = true;
                         Pauza->Enabled = false;
+                        Ogien->Visible = false;
                         IleGraczy->Enabled = true;
                         ShowMessage("Koniec Gry! \nTwoje Punkty:" + Punkty->Caption + "\n Czy dasz radê osi¹gn¹c lepszy wynik?");
                 };
@@ -138,8 +140,9 @@ void __fastcall TKreciki::Timer_pilkaTimer(TObject *Sender)
                 if (Pilka->Left>550-Pilka->Width && Kolory->Brush->Color==clRed ) if(x>0) x = -x;
                 if (Pilka->Left<2 && Kolory->Brush->Color==clGreen) if (x<0) x=-x;
 
+
                 //Skucha
-                if((Pilka->Left<0) || (Pilka->Left>Paletka2->Left+Paletka2->Width+5))
+                if((Pilka->Left<-5) || (Pilka->Left>Paletka2->Left+Paletka2->Width+5))
                 {
                         Pilka->Visible = false;
                         Timer_pilka->Enabled = false;
@@ -154,6 +157,7 @@ void __fastcall TKreciki::Timer_pilkaTimer(TObject *Sender)
                         Start->Enabled = true;
                         Pauza->Enabled = false;
                         IleGraczy->Enabled = true;
+                        Ogien->Visible = false;
                         ShowMessage("Koniec Gry! \nTwoje Punkty:" + Punkty->Caption + "\n Czy dasz radê osi¹gn¹c lepszy wynik?");
                 };
                 //odbijanie od paletki 1
@@ -164,6 +168,7 @@ void __fastcall TKreciki::Timer_pilkaTimer(TObject *Sender)
                         x=-x;
                         if (Kolory->Brush->Color==clGreen)
                            {
+                             MediaPlayer1->Play();
                              int temp = Punkty->Caption.ToInt()-5;
                              Punkty->Caption = temp;
                              if(Punkty->Caption<0) Punkty->Font->Color = clRed;
@@ -180,6 +185,7 @@ void __fastcall TKreciki::Timer_pilkaTimer(TObject *Sender)
                         x=-x;
                         if (Kolory->Brush->Color==clRed)
                            {
+                             MediaPlayer1->Play();
                              int temp = Punkty->Caption.ToInt()-5;
                              Punkty->Caption = temp;
                              if(Punkty->Caption<0) Punkty->Font->Color = clRed;
@@ -206,63 +212,75 @@ void __fastcall TKreciki::Timer_pilkaTimer(TObject *Sender)
         {
                 x=-x;
                 y=-y;
+                MediaPlayer2->Play();
          };
 
          if ((kolizja(Pilka, Krecik2, Krecik5, Punkty)==true))
         {
                 x=-x;
                 y=-y;
+                MediaPlayer2->Play();
          };
 
          if ((kolizja(Pilka, Krecik3, Krecik6, Punkty)==true))
         {
                 x=-x;
                 y=-y;
+                MediaPlayer2->Play();
          };
          if ((kolizja(Pilka, Krecik4, Krecik7, Punkty)==true))
         {
                 x=-x;
                 y=-y;
+                MediaPlayer2->Play();
          };
          if ((kolizja(Pilka, Krecik5, Krecik8, Punkty)==true))
         {
                 x=-x;
                 y=-y;
+                MediaPlayer2->Play();
          };
          if ((kolizja(Pilka, Krecik6, Krecik9, Punkty)==true))
         {
                 x=-x;
                 y=-y;
+                MediaPlayer2->Play();
          };
          if ((kolizja(Pilka, Krecik7, Krecik10, Punkty)==true))
         {
                 x=-x;
                 y=-y;
+                MediaPlayer2->Play();
          };
          if ((kolizja(Pilka, Krecik8, Krecik11, Punkty)==true))
         {
                 x=-x;
                 y=-y;
+                MediaPlayer2->Play();
          };
          if ((kolizja(Pilka, Krecik9, Krecik12, Punkty)==true))
         {
                 x=-x;
                 y=-y;
+                MediaPlayer2->Play();
          };
          if ((kolizja(Pilka, Krecik10, Krecik, Punkty)==true))
         {
                 x=-x;
                 y=-y;
+                MediaPlayer2->Play();
          };
          if ((kolizja(Pilka, Krecik11, Krecik2, Punkty)==true))
         {
                 x=-x;
                 y=-y;
+                MediaPlayer2->Play();
          };
          if ((kolizja(Pilka, Krecik12, Krecik3, Punkty)==true))
         {
                 x=-x;
                 y=-y;
+                MediaPlayer2->Play();
          };
 
 }
@@ -311,7 +329,10 @@ void __fastcall TKreciki::StartClick(TObject *Sender)
                 Pilka->Left = random(150, 400);
                 Pilka->Top = random(0, 400-Pilka->Height);
         };
-
+        MediaPlayer1->FileName = "wav/beep-10.wav";
+        MediaPlayer1->Open();
+        MediaPlayer2->FileName = "wav/crash.wav";
+        MediaPlayer2->Open();
         speed= StrToInt(Predkosc->Text);
         Timer_pilka->Interval = 25-3*speed;
         Timer_pilka->Enabled = true;

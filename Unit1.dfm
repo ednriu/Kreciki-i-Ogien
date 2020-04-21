@@ -191,8 +191,8 @@ object Kreciki: TKreciki
       8000}
   end
   object Pilka: TImage
-    Left = 488
-    Top = 144
+    Left = 80
+    Top = 88
     Width = 30
     Height = 30
     AutoSize = True
@@ -1329,9 +1329,25 @@ object Kreciki: TKreciki
     Caption = '2 Paletki'
     TabOrder = 3
   end
+  object MediaPlayer1: TMediaPlayer
+    Left = 296
+    Top = 424
+    Width = 253
+    Height = 30
+    Visible = False
+    TabOrder = 4
+  end
+  object MediaPlayer2: TMediaPlayer
+    Left = 224
+    Top = 240
+    Width = 253
+    Height = 30
+    Visible = False
+    TabOrder = 5
+  end
   object Timer_paletka_lewo: TTimer
     Enabled = False
-    Interval = 15
+    Interval = 20
     OnTimer = Timer_paletka_lewoTimer
     Left = 200
     Top = 424
@@ -1345,7 +1361,7 @@ object Kreciki: TKreciki
   end
   object Timer_paletka_prawo: TTimer
     Enabled = False
-    Interval = 15
+    Interval = 20
     OnTimer = Timer_paletka_prawoTimer
     Left = 232
     Top = 424
@@ -1359,14 +1375,14 @@ object Kreciki: TKreciki
   end
   object Timer_paletka2_lewo: TTimer
     Enabled = False
-    Interval = 15
+    Interval = 20
     OnTimer = Timer_paletka2_lewoTimer
     Left = 352
     Top = 416
   end
   object Timer_paletka2_prawo: TTimer
     Enabled = False
-    Interval = 15
+    Interval = 20
     OnTimer = Timer_paletka2_prawoTimer
     Left = 400
     Top = 416

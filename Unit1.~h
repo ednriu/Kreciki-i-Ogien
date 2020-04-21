@@ -50,6 +50,8 @@ __published:	// IDE-managed Components
         TShape *Kolory;
         TTimer *TimerKolory;
         TLabel *Label1;
+        TMediaPlayer *MediaPlayer1;
+        TMediaPlayer *MediaPlayer2;
         void __fastcall Timer_paletka_lewoTimer(TObject *Sender);
         void __fastcall FormKeyDown(TObject *Sender, WORD &Key,
           TShiftState Shift);

@@ -22,7 +22,7 @@
     <USERDEFINES value="_DEBUG"/>
     <SYSDEFINES value="NO_STRICT"/>
     <MAINSOURCE value="Project1.cpp"/>
-    <INCLUDEPATH value="&quot;C:\Program Files (x86)\Borland\CBuilder6\Projects&quot;;F:\ProgramowanieOkienkowe\PaletkaTest;$(BCB)\include;$(BCB)\include\vcl"/>
+    <INCLUDEPATH value="&quot;F:\Program Files (x86)\Borland\CBuilder6\Projects&quot;;F:\ProgramowanieOkienkowe\PaletkaTest;$(BCB)\include;$(BCB)\include\vcl;&quot;F:\ProgramowanieOkienkowe\Kreciki i Ogien\Wav&quot;"/>
     <LIBPATH value="&quot;C:\Program Files (x86)\Borland\CBuilder6\Projects&quot;;F:\ProgramowanieOkienkowe\PaletkaTest;$(BCB)\lib\obj;$(BCB)\lib"/>
     <WARNINGS value="-w-par"/>
     <OTHERFILES value=""/>
@@ -77,6 +77,24 @@ OriginalFilename=
 ProductName=
 ProductVersion=1.0.0.0
 Comments=
+
+[HistoryLists\hlIncludePath]
+Count=3
+Item0=F:\Program Files (x86)\Borland\CBuilder6\Projects;F:\ProgramowanieOkienkowe\PaletkaTest;$(BCB)\include;$(BCB)\include\vcl;F:\ProgramowanieOkienkowe\Kreciki i Ogien\Wav
+Item1=C:\Program Files (x86)\Borland\CBuilder6\Projects;F:\ProgramowanieOkienkowe\PaletkaTest;$(BCB)\include;$(BCB)\include\vcl;F:\ProgramowanieOkienkowe\Kreciki i Ogien\Wav
+Item2=C:\Program Files (x86)\Borland\CBuilder6\Projects;F:\ProgramowanieOkienkowe\PaletkaTest;$(BCB)\include;$(BCB)\include\vcl
+
+[HistoryLists\hlLibraryPath]
+Count=1
+Item0=C:\Program Files (x86)\Borland\CBuilder6\Projects;F:\ProgramowanieOkienkowe\PaletkaTest;$(BCB)\lib\obj;$(BCB)\lib
+
+[HistoryLists\hlDebugSourcePath]
+Count=1
+Item0=$(BCB)\source\vcl
+
+[HistoryLists\hlConditionals]
+Count=1
+Item0=_DEBUG
 
 [Debugging]
 DebugSourceDirs=$(BCB)\source\vcl

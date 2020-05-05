@@ -105,7 +105,7 @@ void __fastcall TKreciki::Timer_pilkaTimer(TObject *Sender)
                            x=-x;
                            if (Kolory->Brush->Color==clGreen)
                            {
-                             MediaPlayer1->Play();
+                             sndPlaySound("wav/beep-10.wav", SND_ASYNC);
                              int temp = Punkty->Caption.ToInt()-5;
                              Punkty->Caption = temp;
                              if(Punkty->Caption<0) Punkty->Font->Color = clRed;
@@ -168,7 +168,7 @@ void __fastcall TKreciki::Timer_pilkaTimer(TObject *Sender)
                         x=-x;
                         if (Kolory->Brush->Color==clGreen)
                            {
-                             MediaPlayer1->Play();
+                             sndPlaySound("wav/beep-10.wav", SND_ASYNC);
                              int temp = Punkty->Caption.ToInt()-5;
                              Punkty->Caption = temp;
                              if(Punkty->Caption<0) Punkty->Font->Color = clRed;
@@ -185,7 +185,7 @@ void __fastcall TKreciki::Timer_pilkaTimer(TObject *Sender)
                         x=-x;
                         if (Kolory->Brush->Color==clRed)
                            {
-                             MediaPlayer1->Play();
+                             sndPlaySound("wav/beep-10.wav", SND_ASYNC);
                              int temp = Punkty->Caption.ToInt()-5;
                              Punkty->Caption = temp;
                              if(Punkty->Caption<0) Punkty->Font->Color = clRed;
@@ -212,7 +212,7 @@ void __fastcall TKreciki::Timer_pilkaTimer(TObject *Sender)
         {
                 x=-x;
                 y=-y;
-                MediaPlayer2->Play();
+                sndPlaySound("wav/crash.wav", SND_ASYNC);
 
          };
 
@@ -220,7 +220,7 @@ void __fastcall TKreciki::Timer_pilkaTimer(TObject *Sender)
         {
                 x=-x;
                 y=-y;
-                MediaPlayer2->Play();
+                sndPlaySound("wav/crash.wav", SND_ASYNC);
 
          };
 
@@ -228,70 +228,70 @@ void __fastcall TKreciki::Timer_pilkaTimer(TObject *Sender)
         {
                 x=-x;
                 y=-y;
-                MediaPlayer2->Play();
+                sndPlaySound("wav/crash.wav", SND_ASYNC);
 
          };
          if ((kolizja(Pilka, Krecik4, Krecik7, Punkty)==true))
         {
                 x=-x;
                 y=-y;
-                MediaPlayer2->Play();
+                sndPlaySound("wav/crash.wav", SND_ASYNC);
 
          };
          if ((kolizja(Pilka, Krecik5, Krecik8, Punkty)==true))
         {
                 x=-x;
                 y=-y;
-                MediaPlayer2->Play();
+                sndPlaySound("wav/crash.wav", SND_ASYNC);
 
          };
          if ((kolizja(Pilka, Krecik6, Krecik9, Punkty)==true))
         {
                 x=-x;
                 y=-y;
-                MediaPlayer2->Play();
+                sndPlaySound("wav/crash.wav", SND_ASYNC);
 
          };
          if ((kolizja(Pilka, Krecik7, Krecik10, Punkty)==true))
         {
                 x=-x;
                 y=-y;
-                MediaPlayer2->Play();
+                sndPlaySound("wav/crash.wav", SND_ASYNC);
 
          };
          if ((kolizja(Pilka, Krecik8, Krecik11, Punkty)==true))
         {
                 x=-x;
                 y=-y;
-                MediaPlayer2->Play();
+                sndPlaySound("wav/crash.wav", SND_ASYNC);
 
          };
          if ((kolizja(Pilka, Krecik9, Krecik12, Punkty)==true))
         {
                 x=-x;
                 y=-y;
-                MediaPlayer2->Play();
+                sndPlaySound("wav/crash.wav", SND_ASYNC);
 
          };
          if ((kolizja(Pilka, Krecik10, Krecik, Punkty)==true))
         {
                 x=-x;
                 y=-y;
-                MediaPlayer2->Play();
+                sndPlaySound("wav/crash.wav", SND_ASYNC);
 
          };
          if ((kolizja(Pilka, Krecik11, Krecik2, Punkty)==true))
         {
                 x=-x;
                 y=-y;
-                MediaPlayer2->Play();
+                sndPlaySound("wav/crash.wav", SND_ASYNC);
 
          };
          if ((kolizja(Pilka, Krecik12, Krecik3, Punkty)==true))
         {
                 x=-x;
                 y=-y;
-                MediaPlayer2->Play();
+                sndPlaySound("wav/crash.wav", SND_ASYNC);
 
          };
 
@@ -341,11 +341,7 @@ void __fastcall TKreciki::StartClick(TObject *Sender)
                 Pilka->Left = random(150, 400);
                 Pilka->Top = random(0, 400-Pilka->Height);
         };
-        MediaPlayer1->FileName = "wav/beep-10.wav";
-        MediaPlayer1->Open();
-        MediaPlayer2->FileName = "wav/crash.wav";
-        MediaPlayer2->Open();
-        
+       
         speed= StrToInt(Predkosc->Text);
         Timer_pilka->Interval = 25-3*speed;
         Timer_pilka->Enabled = true;

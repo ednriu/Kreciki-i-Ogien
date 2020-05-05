@@ -1330,22 +1330,6 @@ object Kreciki: TKreciki
     Caption = '2 Paletki'
     TabOrder = 3
   end
-  object MediaPlayer1: TMediaPlayer
-    Left = 296
-    Top = 424
-    Width = 253
-    Height = 30
-    Visible = False
-    TabOrder = 4
-  end
-  object MediaPlayer2: TMediaPlayer
-    Left = 272
-    Top = 408
-    Width = 253
-    Height = 30
-    Visible = False
-    TabOrder = 5
-  end
   object Timer_paletka_lewo: TTimer
     Enabled = False
     Interval = 20

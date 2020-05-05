@@ -1,6 +1,6 @@
 object Kreciki: TKreciki
-  Left = 426
-  Top = 198
+  Left = 293
+  Top = 129
   Width = 683
   Height = 505
   HorzScrollBar.Visible = False
@@ -15,6 +15,7 @@ object Kreciki: TKreciki
   Font.Height = -11
   Font.Name = 'MS Sans Serif'
   Font.Style = []
+  FormStyle = fsStayOnTop
   OldCreateOrder = False
   Visible = True
   OnCreate = FormCreate
@@ -1338,8 +1339,8 @@ object Kreciki: TKreciki
     TabOrder = 4
   end
   object MediaPlayer2: TMediaPlayer
-    Left = 224
-    Top = 240
+    Left = 272
+    Top = 408
     Width = 253
     Height = 30
     Visible = False

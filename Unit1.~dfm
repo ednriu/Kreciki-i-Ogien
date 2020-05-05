@@ -1,6 +1,6 @@
 object Kreciki: TKreciki
-  Left = 426
-  Top = 198
+  Left = 293
+  Top = 129
   Width = 683
   Height = 505
   HorzScrollBar.Visible = False
@@ -15,6 +15,7 @@ object Kreciki: TKreciki
   Font.Height = -11
   Font.Name = 'MS Sans Serif'
   Font.Style = []
+  FormStyle = fsStayOnTop
   OldCreateOrder = False
   Visible = True
   OnCreate = FormCreate
@@ -1338,8 +1339,8 @@ object Kreciki: TKreciki
     TabOrder = 4
   end
   object MediaPlayer2: TMediaPlayer
-    Left = 224
-    Top = 240
+    Left = 272
+    Top = 408
     Width = 253
     Height = 30
     Visible = False
@@ -1347,7 +1348,7 @@ object Kreciki: TKreciki
   end
   object Timer_paletka_lewo: TTimer
     Enabled = False
-    Interval = 15
+    Interval = 20
     OnTimer = Timer_paletka_lewoTimer
     Left = 200
     Top = 424
@@ -1361,7 +1362,7 @@ object Kreciki: TKreciki
   end
   object Timer_paletka_prawo: TTimer
     Enabled = False
-    Interval = 15
+    Interval = 20
     OnTimer = Timer_paletka_prawoTimer
     Left = 232
     Top = 424
@@ -1375,14 +1376,14 @@ object Kreciki: TKreciki
   end
   object Timer_paletka2_lewo: TTimer
     Enabled = False
-    Interval = 15
+    Interval = 20
     OnTimer = Timer_paletka2_lewoTimer
     Left = 352
     Top = 416
   end
   object Timer_paletka2_prawo: TTimer
     Enabled = False
-    Interval = 15
+    Interval = 20
     OnTimer = Timer_paletka2_prawoTimer
     Left = 400
     Top = 416

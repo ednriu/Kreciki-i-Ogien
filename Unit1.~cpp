@@ -98,7 +98,7 @@ void __fastcall TKreciki::Timer_pilkaTimer(TObject *Sender)
                 if (Pilka->Left<2 && Kolory->Brush->Color==clGreen) if (x<0) x=-x;
 
                 //odbijanie od paletki 1
-                if(Pilka->Left<Paletka->Left+Paletka->Width+3 && Pilka->Left>Paletka->Left+Paletka->Width-3 && Pilka->Top>Paletka->Top-Pilka->Height/2 && Pilka->Top<Paletka->Top+Paletka->Height+Pilka->Height)
+                if(Pilka->Left<Paletka->Left+Paletka->Width+5 && Pilka->Left>Paletka->Left+Paletka->Width-5 && Pilka->Top>Paletka->Top-Pilka->Height/2 && Pilka->Top<Paletka->Top+Paletka->Height+Pilka->Height)
                 {
                         if (x<0)
                         {
@@ -161,7 +161,7 @@ void __fastcall TKreciki::Timer_pilkaTimer(TObject *Sender)
                         ShowMessage("Koniec Gry! \nTwoje Punkty:" + Punkty->Caption + "\n Czy dasz radê osi¹gn¹c lepszy wynik?");
                 };
                 //odbijanie od paletki 1
-                if(Pilka->Left<Paletka->Left+Paletka->Width+3 && Pilka->Left>Paletka->Left+Paletka->Width-3 && Pilka->Top>Paletka->Top-Pilka->Height/2 && Pilka->Top<Paletka->Top+Paletka->Height+Pilka->Height)
+                if(Pilka->Left<Paletka->Left+Paletka->Width+5 && Pilka->Left>Paletka->Left+Paletka->Width-5 && Pilka->Top>Paletka->Top-Pilka->Height/2 && Pilka->Top<Paletka->Top+Paletka->Height+Pilka->Height)
                 {
                         if (x<0)
                         {
@@ -178,7 +178,7 @@ void __fastcall TKreciki::Timer_pilkaTimer(TObject *Sender)
                 }
 
                 //odbijanie od paletki 2
-                if(Pilka->Left>Paletka2->Left-Pilka->Width-3 && Pilka->Left<Paletka2->Left-Pilka->Width+3 && Pilka->Top>Paletka2->Top-Pilka->Height/2 && Pilka->Top<Paletka2->Top+Paletka2->Height+Pilka->Height/2)
+                if(Pilka->Left>Paletka2->Left-Pilka->Width-5 && Pilka->Left<Paletka2->Left-Pilka->Width+5 && Pilka->Top>Paletka2->Top-Pilka->Height/2 && Pilka->Top<Paletka2->Top+Paletka2->Height+Pilka->Height/2)
                 {
                         if (x>0)
                         {
@@ -213,6 +213,7 @@ void __fastcall TKreciki::Timer_pilkaTimer(TObject *Sender)
                 x=-x;
                 y=-y;
                 MediaPlayer2->Play();
+
          };
 
          if ((kolizja(Pilka, Krecik2, Krecik5, Punkty)==true))
@@ -220,6 +221,7 @@ void __fastcall TKreciki::Timer_pilkaTimer(TObject *Sender)
                 x=-x;
                 y=-y;
                 MediaPlayer2->Play();
+
          };
 
          if ((kolizja(Pilka, Krecik3, Krecik6, Punkty)==true))
@@ -227,60 +229,70 @@ void __fastcall TKreciki::Timer_pilkaTimer(TObject *Sender)
                 x=-x;
                 y=-y;
                 MediaPlayer2->Play();
+
          };
          if ((kolizja(Pilka, Krecik4, Krecik7, Punkty)==true))
         {
                 x=-x;
                 y=-y;
                 MediaPlayer2->Play();
+
          };
          if ((kolizja(Pilka, Krecik5, Krecik8, Punkty)==true))
         {
                 x=-x;
                 y=-y;
                 MediaPlayer2->Play();
+
          };
          if ((kolizja(Pilka, Krecik6, Krecik9, Punkty)==true))
         {
                 x=-x;
                 y=-y;
                 MediaPlayer2->Play();
+
          };
          if ((kolizja(Pilka, Krecik7, Krecik10, Punkty)==true))
         {
                 x=-x;
                 y=-y;
                 MediaPlayer2->Play();
+
          };
          if ((kolizja(Pilka, Krecik8, Krecik11, Punkty)==true))
         {
                 x=-x;
                 y=-y;
                 MediaPlayer2->Play();
+
          };
          if ((kolizja(Pilka, Krecik9, Krecik12, Punkty)==true))
         {
                 x=-x;
                 y=-y;
                 MediaPlayer2->Play();
+
          };
          if ((kolizja(Pilka, Krecik10, Krecik, Punkty)==true))
         {
                 x=-x;
                 y=-y;
                 MediaPlayer2->Play();
+
          };
          if ((kolizja(Pilka, Krecik11, Krecik2, Punkty)==true))
         {
                 x=-x;
                 y=-y;
                 MediaPlayer2->Play();
+
          };
          if ((kolizja(Pilka, Krecik12, Krecik3, Punkty)==true))
         {
                 x=-x;
                 y=-y;
                 MediaPlayer2->Play();
+
          };
 
 }
@@ -300,7 +312,7 @@ void __fastcall TKreciki::FormCreate(TObject *Sender)
         Predkosc->Items->Add("5");
         Predkosc->Items->Add("6");
         Predkosc->Items->Add("7");
-        Application->MessageBox("Klawisze:\n\n Zielona Paletka:\nUP,DOWN\nCzerwona Paletka:\nQ,A\n\nZasady:\n +1pkt za zbicie kreta \n -5pkt za odbicie pi³ki gdy wskazany kolor jest taki sam jak kolor paletki",
+        Application->MessageBox("Klawisze:\n\n Zielona Paletka:\nUP,DOWN\nCzerwona Paletka:\nE,X\n\nZasady:\n +1pkt za zbicie kreta \n -5pkt za odbicie pi³ki gdy wskazany kolor jest taki sam jak kolor paletki",
 				"Instrukcja", NULL);
 }
 //---------------------------------------------------------------------------
@@ -333,6 +345,7 @@ void __fastcall TKreciki::StartClick(TObject *Sender)
         MediaPlayer1->Open();
         MediaPlayer2->FileName = "wav/crash.wav";
         MediaPlayer2->Open();
+        
         speed= StrToInt(Predkosc->Text);
         Timer_pilka->Interval = 25-3*speed;
         Timer_pilka->Enabled = true;
